@@ -1,7 +1,8 @@
-import React from "react";
-import { Column } from "./Column.tsx";
-import { Card } from "./Card.tsx";
-import { AppContainer } from "./styles.ts";
+import React from 'react';
+import { Column } from './Column';
+import { Card } from './Card';
+import { AddNewItem } from './AddNewItem';
+import { AppContainer } from './styles';
 
 const App = () => {
   return (
@@ -21,6 +22,10 @@ const App = () => {
         <Card text="Task 8" />
         <Card text="Task 9" />
       </Column>
+      <AddNewItem
+        toggleButtonText="+ Add another list"
+        onAdd={console.log}
+      />
     </AppContainer>
   );
 };
