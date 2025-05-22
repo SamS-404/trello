@@ -1,22 +1,36 @@
 import React from 'react';
+import { useAppState } from './AppStateContext';
+import { Card } from './Card';
 import { AddNewItem } from './AddNewItem';
 import { ColumnContainer, ColumnTitle } from './styles';
 
 interface ColumnProps {
-  text?: string;
+  text: string;
+  index: number;
+  id: string;
 }
 
 export const Column = ({
   text,
-  children,
-}: React.PropsWithChildren<ColumnProps>) => {
+  index,
+  id,
+}: ColumnProps) => {
+  const { state, dispatch } = useAppState();
+
   return (
     <ColumnContainer>
       <ColumnTitle>{text}</ColumnTitle>
-      {children}
+      {state.lists[index].tasks.map((task, i) => (
+        <Card key={task.id} text={task.text} index={i} />
+      ))}
       <AddNewItem
         toggleButtonText="+ Add another task"
-        onAdd={console.log}
+        onAdd={(text) =>
+          dispatch({
+            type: 'ADD_TASK',
+            payload: { text, taskId: id },
+          })
+        }
         dark
       />
     </ColumnContainer>
