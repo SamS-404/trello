@@ -4,6 +4,25 @@ interface AddItemButtonProps {
   dark?: boolean;
 }
 
+interface DragPreviewContainerProps {
+  isHidden?: boolean;
+  previewType?: 'COLUMN' | 'CARD';
+}
+
+export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
+  opacity: ${(props) => (props.isHidden ? 0.3 : 1)};
+`;
+
+export const CustomDragLayerContainer = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+`;
+
 export const AppContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -14,7 +33,7 @@ export const AppContainer = styled.div`
   background-color: #3179ba;
 `;
 
-export const ColumnContainer = styled.div`
+export const ColumnContainer = styled(DragPreviewContainer)`
   flex-grow: 0;
   width: 300px;
   min-height: 40px;

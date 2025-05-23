@@ -3,8 +3,8 @@ import {
   NewItemFormContainer,
   NewItemButton,
   NewItemInput,
-} from './styles';
-import { useFocus } from './utils/useFocus';
+} from '../styles';
+import { useFocus } from '../utils/useFocus';
 
 interface NewItemFormProps {
   onAdd: (text: string) => void;
